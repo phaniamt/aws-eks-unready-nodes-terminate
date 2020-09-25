@@ -12,6 +12,7 @@ echo " node age is $nodeage seconds "
 if [ "$nodeage" -gt "300" ];then
 echo "Node $i age is moretan 5 min "
 echo " Node $i instance id is $insatnceid "
+kubectl delete pods --grace-period=0 --force --all-namespaces  --field-selector spec.nodeName=$i
 aws ec2 terminate-instances --instance-ids $insatnceid --region ${REGION}
 fi
 done
