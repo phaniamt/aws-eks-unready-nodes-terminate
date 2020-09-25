@@ -1,7 +1,7 @@
 #!/bin/bash
 while true
 do 
-for i in $(kubectl get nodes | grep Ready | awk 'NF{NF-=4};1'); do
+for i in $(kubectl get nodes | grep NotReady | awk 'NF{NF-=4};1'); do
 echo "Nodes   $i is Not Ready"
 id=$(kubectl get no $i -o=custom-columns=ID:spec.providerID |  tail -n +2)
 insatnceid=${id##*/}
